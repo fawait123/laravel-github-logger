@@ -9,10 +9,10 @@ class GithubLogger
     protected $client;
     protected $repo;
     protected $owner;
-    protected $token;
 
-    public function __construct(string $repo, string $token)
+    public function __construct(string $repo = '', string $token = '')
     {
+        $token = config('github_logger.token', $token);
         $this->client = new Client([
             'base_uri' => 'https://api.github.com/',
             'headers' => [
@@ -20,11 +20,10 @@ class GithubLogger
                 'Accept'        => 'application/vnd.github.v3+json',
             ]
         ]);
-        $this->repo = $repo;
-        $this->token = $token;
+        $this->repo = config('github_logger.repo', $repo);
     }
 
-    public function report(string $message, string $stackTrace, string $logLevel = 'BUG', array $extraData = [])
+    public function report(string $message, string $stackTrace, $logLevel = 'BUG', $extraData = [])
     {
         $formattedBody = "**Log Level:** `$logLevel`\n\n" .
             "**Message:**\n" .
