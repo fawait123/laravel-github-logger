@@ -2,9 +2,7 @@
   "name": "geekgarden/github-logger",
   "description": "error logger php exception to github",
   "type": "library",
-  "require": {
-    "guzzlehttp/guzzle": "8.0.x-dev"
-  },
+  "require": {},
   "require-dev": {
     "phpunit/phpunit": "12.0.x-dev"
   },
