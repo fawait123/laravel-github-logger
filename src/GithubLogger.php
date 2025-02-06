@@ -24,15 +24,27 @@ class GithubLogger
         $this->token = $token;
     }
 
-    public function report(string $title, string $body)
+    public function report(string $message, string $stackTrace, string $logLevel = 'BUG', array $extraData = [])
     {
+        $formattedBody = "**Log Level:** `$logLevel`\n\n" .
+            "**Message:**\n" .
+            "> $message\n\n" .
+            "**Stack Trace:**\n" .
+            "```php\n$stackTrace\n```\n\n" .
+            "**Extra Data:**\n" .
+            "```json\n" . $this->formatJson($extraData) . "\n```";
         $response = $this->client->post("repos/{$this->repo}/issues", [
             'json' => [
-                'title' => $title,
-                'body'  => $body,
+                'title' => $message,
+                'body'  => $formattedBody,
             ]
         ]);
 
         return json_decode($response->getBody()->getContents(), true);
+    }
+
+    private function formatJson(array $data): string
+    {
+        return json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
     }
 }
