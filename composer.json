@@ -1,0 +1,36 @@
+{
+  "name": "geekgarden/github-logger",
+  "description": "error logger php exception to github",
+  "type": "library",
+  "require": {
+    "guzzlehttp/guzzle": "8.0.x-dev"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "12.0.x-dev"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Geekgarden\\GithubLogger\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Geekgarden\\GithubLogger\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Geekgarden\\GithubLogger\\GithubLoggerServiceProvider"
+      ]
+    }
+  },
+  "authors": [
+    {
+      "name": "Achmad Fawait",
+      "email": "fawait626@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev"
+}
