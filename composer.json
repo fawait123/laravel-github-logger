@@ -3,9 +3,7 @@
   "description": "error logger php exception to github",
   "type": "library",
   "require": {},
-  "require-dev": {
-    "phpunit/phpunit": "12.0.x-dev"
-  },
+  "require-dev": {},
   "license": "MIT",
   "autoload": {
     "psr-4": {
